@@ -20,6 +20,8 @@ JAWABAN TUGAS 2
    jalankan proyek
    Melakukan Deploy pada Adaptable
 2. Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html.
+   ![image](https://github.com/user-attachments/assets/b312eb51-92b7-4a95-8441-e326e585f86e)
+
 3. Jelaskan fungsi git dalam pengembangan perangkat lunak!
    Git berguna untuk membantu para penggunanya mengecek perubahan apa saja yang telah dilakukan dan membantu pengguna untuk bekerja sama sebagai tim lebih mudah.
 4. Menurut Anda, dari semua framework yang ada, mengapa framework Django dijadikan permulaan pembelajaran pengembangan perangkat lunak?
