@@ -1,5 +1,7 @@
 DHAFIN PUTRA NUGRAHA/2306221112/PBP-B
 
+LINK PWS : https://pbp.cs.ui.ac.id/dhafin.putra/shopPiin
+
 JAWABAN TUGAS 2
 
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
