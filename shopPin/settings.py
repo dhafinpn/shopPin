@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-*(7-i7&ys4z-kjzkp8-n@(n(#ajc(*tlwr-*br2zx_-h08-h_t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "dhafin-putra-shopPiin.pbp.cs.ui.ac.id"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "dhafin-putra-shoppiin.pbp.cs.ui.ac.id"]
 
 
 # Application definition
@@ -55,7 +55,7 @@ ROOT_URLCONF = 'shopPin.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
