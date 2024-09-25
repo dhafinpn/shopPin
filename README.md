@@ -1,6 +1,6 @@
 DHAFIN PUTRA NUGRAHA/2306221112/PBP-B
 
-LINK PWS : https://pbp.cs.ui.ac.id/dhafin.putra/shopPiin
+LINK PWS : https://pbp.cs.ui.ac.id/dhafin.putra/shoppiin
 
 JAWABAN TUGAS 2
 
@@ -48,3 +48,18 @@ JAWABAN TUGAS 3
    Membuat file html baru yang ada pada subdirektori templates yang ada di direktori main.
    Menambahkan 4 fungsi pada views untuk melihat data yang sudah ditambahkan dalam bentuk XML, JSON, XML by ID, dan JSON by ID.
    Commit dan push ke github
+
+JAWABAN TUGAS 4
+1. Apa perbedaan antara HttpResponseRedirect() dan redirect()
+   HttpResponseRedirect() merupakan subclass dari HttpResponse yang digunakan untuk mengirimkan respons pengalihan ke pengguna. Sedangkan redirect() merupakan fungsi pendek yang lebih mudah digunakan dan fleksibel untuk mengatur pengalihan.
+2. Jelaskan cara kerja penghubungan model Product dengan User!
+   Penghubungan model product dengan user dapat dilakukan dengan membuat foreign key pada model product yang dihubungkan ke model user. Dengan cara ini, setiap data pada model product akan terhubung dengan data pada model user.
+3. Apa perbedaan antara authentication dan authorization, apakah yang dilakukan saat pengguna login? Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut.
+    Authentication dan authorization merupakan dua konsep kunci dalam keamanan aplikasi web. Authentication memverifikasi identitas pengguna, contohnya saat login dengan username dan password. Authorization menentukan hak akses pengguna setelah terverifikasi, seperti apa yang bisa mereka lihat atau lakukan dalam sistem. Di Django, authentication diatur melalui form login dan backend otentikasi, sedangkan authorization dikelola melalui izin yang dapat diatur pada pengguna atau grup.
+4. Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?
+   Django mengingat pengguna yang telah login dengan menggunakan session. Saat pengguna login, Django akan membuat session yang berisi informasi pengguna, seperti id dan username. Session ini akan disimpan di server dan dikirimkan ke pengguna dalam bentuk cookie. Pengguna akan menyimpan cookie ini di browser mereka dan mengirimkannya kembali ke server setiap kali mereka melakukan request. Django akan memeriksa cookie ini untuk mengidentifikasi pengguna yang telah login. Kegunaan lain dari cookies adalah untuk menyimpan informasi pengaturan pengguna. Tidak semua cookies aman digunakan. Cookies yang tidak dienkripsi atau tidak diotentikasi dapat disalahgunakan oleh penyerang untuk mencuri informasi sensitif pengguna atau melakukan serangan lainnya.
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+   Pertama buatlah fungsi untuk register, login, dan logout di views.py. Khusus untuk register dan login buatlah satu buat file html baru di direktori templates yang berada di main dengan nama ragister.html dan login.html. untuk logout tinggal tambahkan logout button di main.html. setelah itu lakukan import ke urls.py dan masukan url path ke dalam urlspattern di urls.py
+   Kedua menghubungkan model product dengan user dengan cara import user pada models.py dan menambahkan foriegn key pada class yang ada di models.py.
+   Untuk menampilkan last login pada fungsi show main tambahkan 'last_login': request.COOKIES['last_login'] yang akan menampilkan kapan terakhir user login.
+   
