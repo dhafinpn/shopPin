@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.contrib import messages
 from django.shortcuts import render, redirect 
-from main.forms import ReviewEntryForm
+from main.forms import ReviewForm
 from main.models import ReviewEntry
 from django.http import HttpResponse
 from django.core import serializers
@@ -29,7 +29,7 @@ def show_main(request):
     return render(request, "main.html", context)
 
 def create_review_entry(request):
-    form = ReviewEntryForm(request.POST or None)
+    form = ReviewForm(request.POST or None)
 
     if form.is_valid() and request.method == "POST":
         review_entry = form.save(commit=False)

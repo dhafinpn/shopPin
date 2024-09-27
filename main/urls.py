@@ -9,7 +9,6 @@ app_name = 'main'
 
 urlpatterns = [
     path('', show_main, name='show_main'),
-    path('', include('main.urls')),
     path('create_review_entry',create_review_entry, name='create_review_entry'),
     path('xml/', show_xml, name='show_xml'),
     path('json/', show_json, name='show_json'),
