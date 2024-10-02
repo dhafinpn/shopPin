@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.contrib import messages
-from django.shortcuts import render, redirect 
+from django.shortcuts import render, redirect, reverse
 from main.forms import ReviewForm
 from main.models import ReviewEntry
 from django.http import HttpResponse
@@ -89,3 +89,20 @@ def logout_user(request):
     response = HttpResponseRedirect(reverse('main:login'))
     response.delete_cookie('last_login')
     return response
+
+def edit_review(request, id):
+    review = ReviewEntry.objects.get(pk = id)
+
+    form = ReviewForm(request.POST or None, instance=review)
+
+    if form.is_valid() and request.method == "POST":
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+
+    context = {'form': form}
+    return render(request, "edit_review.html", context)
+
+def delete_review(request, id):
+    review = ReviewEntry.objects.get(pk = id)
+    review.delete()
+    return HttpResponseRedirect(reverse('main:show_main'))

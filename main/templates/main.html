@@ -1,46 +1,82 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<h1>shopPin</h1>
+{% include 'navbar.html' %}
 
-<h5>Product : </h5>
-<p>{{ product }}<p>
+<div class="max-w-5xl mx-auto p-6">
+  <h1 class="text-4xl font-bold mb-6 text-center">shopPin</h1>
 
-<h5>Price : </h5>
-<p>{{ price }}<p>
+  <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+    <div class="space-y-6">
+      <div class="flex justify-between items-center">
+        <h5 class="text-lg font-bold">Product:</h5>
+        <p class="text-lg">{{ product }}</p>
+      </div>
+      <div class="flex justify-center items-center">
+        <img src="{% static 'image/jersey.jpg' %}" alt="Product Image" class="w-64 h-auto">
+      </div>
+      <div class="flex justify-between items-center">
+        <h5 class="text-lg font-bold">Price:</h5>
+        <p class="text-lg text-green-500">{{ price }}</p>
+      </div>
+      <div>
+        <h5 class="text-lg font-bold">Description:</h5>
+        <p class="text-gray-700">{{ description }}</p>
+      </div>
+    </div>
+  </div>
 
-<h5>Description: </h5>
-<p>{{ description }}<p>
-    
+  <div class="bg-white p-6 rounded-lg shadow-md">
     {% if not review_entries %}
-    <p>Belum ada review pada product ini.</p>
+      <div class="flex flex-col justify-center items-center text-center">
+        <img src="{% static 'image/sad.png' %}" alt="Sad emoji" class="w-24 h-24 mb-4">
+        <p class="text-gray-600 text-lg">Belum ada review pada product ini.</p>
+      </div>
     {% else %}
-    <table>
-      <tr>
-        <th>Name</th>
-        <th>Time</th>
-        <th>Review</th>
-        <th>Rating</th>
-      </tr>
-    
-      {% comment %} Berikut cara memperlihatkan data review di bawah baris ini 
-      {% endcomment %} 
-      {% for review_entry in review_entries %}
-      <tr>
-        <td>{{review_entry.name}}</td>
-        <td>{{review_entry.time}}</td>
-        <td>{{review_entry.review}}</td>
-        <td>{{review_entry.rating}}</td>
-      </tr>
-      {% endfor %}
-    </table>
+      <h5 class="text-xl font-semibold mb-4">Product Reviews</h5>
+      <table class="min-w-full table-auto bg-gray-50 rounded-lg shadow-lg">
+        <thead class="bg-indigo-600 text-white">
+          <tr>
+            <th class="px-4 py-2">Name</th>
+            <th class="px-4 py-2">Time</th>
+            <th class="px-4 py-2">Review</th>
+            <th class="px-4 py-2">Rating</th>
+            <th class="px-4 py-2">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white text-gray-700">
+          {% for review_entry in review_entries %}
+          <tr class="border-b">
+            <td class="px-4 py-2">{{ review_entry.name }}</td>
+            <td class="px-4 py-2">{{ review_entry.time }}</td>
+            <td class="px-4 py-2">{{ review_entry.review }}</td>
+            <td class="px-4 py-2">{{ review_entry.rating }}</td>
+            <td class="px-4 py-2 flex space-x-2">
+              <a href="{% url 'main:edit_review' review_entry.pk %}" class="text-blue-500 hover:underline">
+                <button class="bg-yellow-500 text-white px-4 py-2 rounded-md">Edit</button>
+              </a>
+              <a href="{% url 'main:delete_review' review_entry.pk %}" class="text-red-500 hover:underline">
+                <button class="bg-red-500 text-white px-4 py-2 rounded-md">Delete</button>
+              </a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     {% endif %}
-    <br />
-    
+  </div>
+
+  <div class="mt-6 flex space-x-4">
     <a href="{% url 'main:create_review_entry' %}">
-      <button>Add New Review</button>
+      <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Add New Review</button>
     </a>
     <a href="{% url 'main:logout' %}">
-      <button>Logout</button>
+      <button class="bg-black text-white font-bold py-2 px-4 rounded">Logout</button>
     </a>
-    <h5>Sesi terakhir login: {{ last_login }}</h5>
-    {% endblock content %}
+  </div>
+
+  <h5 class="mt-4 text-gray-500">Sesi terakhir login: {{ last_login }}</h5>
+</div>
+
+{% endblock content %}
+

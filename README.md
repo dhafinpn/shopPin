@@ -63,3 +63,33 @@ JAWABAN TUGAS 4
    Kedua menghubungkan model product dengan user dengan cara import user pada models.py dan menambahkan foriegn key pada class yang ada di models.py.
    Untuk menampilkan last login pada fungsi show main tambahkan 'last_login': request.COOKIES['last_login'] yang akan menampilkan kapan terakhir user login.
    
+JAWABAN TUGAS 5
+1. Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
+
+Urutannya adalah sebagai berikut :
+a. Inline Styles, gaya yang langsung ditulis pada elemen HTML menggunakan atribut style merupakan prioritas paling tinggi
+b. ID Selector, Selector yang menggunakan ID HTML memiliki prioritas lebih tinggi dibanding class.
+c. Class, Pseudo-class, dan Attribute Selector, Selector yang menggunakan class , pseudo-class atau attribute selector berada di urutan berikutnya dalam hal prioritas
+
+2. Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design!
+
+Tentu sangat penting karena pada saat ini hampir semua orang setidaknya memiliki 2 device dengan ukuran yang berbeda dan responsive design ini harus ada supaya dapat digunakan di device manapun. Contoh aplikasi yang sudah menerapkannya seperti twitter (x) dan instagram. 
+
+3. Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
+
+Margin merupakan ruang di luar elemen yang mempengaruhi seberapa jauh elemen terebut dari elemen lain. Dapat di implementasikan dengan properti margin.
+Border adalah ruang disekitar elemen yang membungkus padding Dapat di implementasikan dengan properti border.
+Padding adalah ruang di dalam elemen itu sendiri. Dapat di implementasikan dengan properti padding.
+
+4. Jelaskan konsep flex box dan grid layout beserta kegunaannya!
+
+Flexbox adalah metode layout CSS yang dirancang untuk menyusun elemen dalam satu dimensi. Flexbox memudahkan dalam mengatur posisi, ukuran, dan distribusi dalam sebuah kontainer
+
+Grid Layout merupakan metode layout dua dimensi yang membuat kita dapat membuat tata letak lebih kompleks. Grid dapat membuat layout berbasis baris dan kolom secara bersamaan dengan kontrol penuh terhadap elemen-elemen di dalamnya.
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+
+Pertama buatlah 2 fungsi baru untuk edit review dan juga delete review
+Setelah itu membuat navbar yang dapat disesuaikan dengan design manapun
+Melakukan kustomisasi terhadap bagian main, login, register, create review, dan edit review sesuai dengan konsep yang saya miliki menggunakan tailwind css
+Menyesuaikan layout dan posisi agar terlihat rapih

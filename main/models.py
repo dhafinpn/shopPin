@@ -9,6 +9,7 @@ class ReviewEntry(models.Model):
     time = models.DateField(auto_now_add=True)
     review = models.TextField()
     rating = models.IntegerField()
+    image = models.CharField(max_length=2083)
 
 
 
