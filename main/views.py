@@ -1,7 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login
-from django.contrib.auth import logout
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.shortcuts import render, redirect, reverse
 from main.forms import ReviewForm
@@ -11,19 +10,20 @@ from django.core import serializers
 import datetime
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+from django.utils.html import strip_tags
 
 @login_required(login_url='/login')
 
 def show_main(request):
-    review_entries = ReviewEntry.objects.filter(user=request.user)
 
     context = {
         'name': request.user.username,
         'product' : 'Manchester United 2024/2025 Official Jersey',
         'price': '2000000',
         'description': 'The Official Jersey of Manchester United for 2024/2025 season',
-        'review_entries': review_entries,
-        'last_login': request.COOKIES['last_login'], 
+        #'last_login': request.COOKIES['last_login'], 
         }
 
     return render(request, "main.html", context)
@@ -62,9 +62,13 @@ def register(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
-            messages.success(request, 'Your account has been successfully created!')
-            return redirect('main:login')
+            user = form.get_user()
+            login(request, user)
+            response = HttpResponseRedirect(reverse("main:show_main"))
+            response.set_cookie('last_login', str(datetime.datetime.now()))
+            return response
+        else:
+            messages.error(request, "Invalid username or password. Please try again.")
     context = {'form':form}
     return render(request, 'register.html', context)
 
@@ -106,3 +110,21 @@ def delete_review(request, id):
     review = ReviewEntry.objects.get(pk = id)
     review.delete()
     return HttpResponseRedirect(reverse('main:show_main'))
+
+@csrf_exempt
+@require_POST
+def add_review_entry_ajax(request):
+    name = strip_tags(request.POST.get("name"))
+    review = strip_tags(request.POST.get("review"))
+    rating = request.POST.get("rating")
+    user = request.user
+
+    new_review = ReviewEntry(
+        name=name, 
+        review=review,
+        rating=rating,
+        user=user
+    )
+    new_review.save()
+
+    return HttpResponse(b"CREATED", status=201)
