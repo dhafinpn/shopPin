@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block meta %}
+<title>ShopPiin</title>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.7/dist/purify.min.js"></script>
+{% endblock meta %}
 {% block content %}
 {% include 'navbar.html' %}
 
@@ -103,6 +107,8 @@
 } else {
     classNameString = "w-full" // Remove columns classes for a full-width table
     reviewEntries.forEach((item) => {
+      const name = DOMPurify.sanitize(item.fields.name);
+      const review = DOMPurify.sanitize(item.fields.review);
         htmlString += `
         <div class="w-full mb-6">
             <table class="min-w-full bg-red-100 border border-red-300 rounded-lg shadow-md">
