@@ -93,3 +93,29 @@ Pertama buatlah 2 fungsi baru untuk edit review dan juga delete review
 Setelah itu membuat navbar yang dapat disesuaikan dengan design manapun
 Melakukan kustomisasi terhadap bagian main, login, register, create review, dan edit review sesuai dengan konsep yang saya miliki menggunakan tailwind css
 Menyesuaikan layout dan posisi agar terlihat rapih
+
+
+TUGAS 6
+1. Jelaskan manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web!
+a. JavaScript dapat membuat aplikasi web yang responsive terhadap input pengguna
+b. JavaScript dapat membuat web yang interaktif dan dinamis
+c. JavaScript dapat membuat web yang dapat berjalan di berbagai platform dan perangkat
+
+2. Jelaskan fungsi dari penggunaan await ketika kita menggunakan fetch()! Apa yang akan terjadi jika kita tidak menggunakan await?
+fungsi await berguna untuk menunggu eksekusi kode hingga Promise yang dihasilkan oleh fetch() selesai. Jika kita tidak menggunakan await, fetch() akan mengembalikan Promise segera tanpa menunggu respons dari server. 
+
+3. Mengapa kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk AJAX POST?
+csrf_exempt digunakan untuk menonaktifkan pemeriksaan token CSRF pada view tertentu dalam aplikasi web Django. Kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk AJAX POST agar request POST yang dikirimkan melalui AJAX tidak memerlukan token CSRF. Jika kita tidak menggunakan csrf_exempt, maka Django akan menolak request POST yang dikirimkan melalui AJAX karena tidak menyertakan token CSRF.
+
+4. Pada tutorial PBP minggu ini, pembersihan data input pengguna dilakukan di belakang (backend) juga. Mengapa hal tersebut tidak dilakukan di frontend saja?
+Keamanan: Frontend dapat dengan mudah dimanipulasi oleh pengguna. Jika hanya mengandalkan pembersihan di sisi klien, ada risiko pengguna yang tidak bertanggung jawab dapat mengirimkan data berbahaya langsung ke server. Melakukan pembersihan di backend membantu memastikan bahwa semua data yang diterima aman untuk diproses.
+
+Konsistensi Data: Pembersihan data di backend memastikan bahwa semua data yang disimpan atau diproses di server selalu mengikuti aturan yang sama, terlepas dari bagaimana data tersebut dikirim. Ini membantu menjaga integritas database dan mencegah masalah yang mungkin timbul dari data yang tidak valid.
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+
+buat fungsi baru untuk add review dengan AJAX
+menambahkan routing ke urls.py untuk fungsi yang baru dibuat tadi
+mengubah cara untuk menampilkan data di views.py dan juga ubah bagian main.html menghapus conditional blocks yang menampilkan produk secara langsung Gantikan denganyang memiliki id sebagai placeholder di mana produk akan ditampilkan secara dinamis.
+Buatlah fungsi baru dalam blok script yaitu getReviewwEntries() dan refreshReviewEntries yang berfungsi untuk melakukan fecth data dan mengambil data yang sudah di fetch tanpa melakukan reload.
+Terakhir menggunakan strip_tags pada backend untuk keamanan dan menambahkan DOMPurify pada forntend.
