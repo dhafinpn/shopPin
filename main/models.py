@@ -3,13 +3,11 @@ import uuid
 from django.contrib.auth.models import User
 
 class ReviewEntry(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)  # tambahkan baris ini
     name = models.CharField(max_length=255)
     time = models.DateField(auto_now_add=True)
     review = models.TextField()
     rating = models.IntegerField()
     image = models.CharField(max_length=2083)
-
-
 

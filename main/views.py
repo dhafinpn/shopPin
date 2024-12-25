@@ -1,3 +1,4 @@
+import json
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
@@ -5,7 +6,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, reverse
 from main.forms import ReviewForm
 from main.models import ReviewEntry
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.core import serializers
 import datetime
 from django.http import HttpResponseRedirect
@@ -23,7 +24,7 @@ def show_main(request):
         'product' : 'Manchester United 2024/2025 Official Jersey',
         'price': '2000000',
         'description': 'The Official Jersey of Manchester United for 2024/2025 season',
-        #'last_login': request.COOKIES['last_login'], 
+        'last_login': request.COOKIES['last_login'], 
         }
 
     return render(request, "main.html", context)
@@ -62,13 +63,9 @@ def register(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            response = HttpResponseRedirect(reverse("main:show_main"))
-            response.set_cookie('last_login', str(datetime.datetime.now()))
-            return response
-        else:
-            messages.error(request, "Invalid username or password. Please try again.")
+            form.save()
+            messages.success(request, 'Your account has been successfully created!')
+            return redirect('main:login')
     context = {'form':form}
     return render(request, 'register.html', context)
 
@@ -128,3 +125,21 @@ def add_review_entry_ajax(request):
     new_review.save()
 
     return HttpResponse(b"CREATED", status=201)
+
+@csrf_exempt
+def create_review_flutter(request):
+    if request.method == 'POST':
+
+        data = json.loads(request.body)
+        new_review = ReviewEntry.objects.create(
+            user = request.user if request.user.is_authenticated else None,
+            name=data["name"],
+            rating=int(data["rating"]),
+            review=data["review"]
+        )
+
+        new_review.save()
+
+        return JsonResponse({"status": "success"}, status=200)
+    else:
+        return JsonResponse({"status": "error"}, status=401)

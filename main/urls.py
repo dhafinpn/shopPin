@@ -4,7 +4,7 @@ from django.urls import path, include
 from main.views import register
 from main.views import login_user
 from main.views import logout_user
-from main.views import edit_review, delete_review, add_review_entry_ajax
+from main.views import edit_review, delete_review, add_review_entry_ajax, create_review_flutter
 
 app_name = 'main'
 
@@ -21,4 +21,5 @@ urlpatterns = [
     path('edit-review/<uuid:id>', edit_review, name='edit_review'),
     path('delete/<uuid:id>', delete_review, name='delete_review'),
     path('create-review-entry-ajax', add_review_entry_ajax, name='add_review_entry_ajax'),
+    path('create-flutter/', create_review_flutter, name='create_review_flutter'),
 ]
